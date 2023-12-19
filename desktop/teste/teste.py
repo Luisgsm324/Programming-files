@@ -1,19 +1,37 @@
-lista = [0,1,2]
-for i in range(len(lista)):
-    print(i)
+def heapify(arr, n, i):
+    largest = i
+    left = 2 * i + 1
+    right = 2 * i + 2
 
+    if left < n and arr[i] < arr[left]:
+        largest = left
 
-"""
-if lista[-(index+1)] == "new balance" or "endrick" not in lista:
-            if endr_bool == False :
-                endr_bool = True
-        if lista[-(index+1)] == "puma" or "neymar" not in lista:
-            if ney_bool == False:
-                ney_bool = True
-        if lista[-(index+1)] == "nike" or "cr7" not in lista:
-            if cr7_bool == False:
-                cr7_bool = True
-        if lista[-(index+1)] == "adidas" or "messi" not in lista:
-            if mes_bool == False:
-                mes_bool = True
-"""
+    if right < n and arr[largest] < arr[right]:
+        largest = right
+
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        heapify(arr, n, largest)
+
+def heapsort(arr):
+    n = len(arr)
+
+    # Construir um max heap
+    for i in range(n // 2 - 1, -1, -1):
+        heapify(arr, n, i)
+
+    # Extrair elementos um a um
+    for i in range(n - 1, 0, -1):
+        arr[i], arr[0] = arr[0], arr[i]
+        heapify(arr, i, 0)
+
+def calcular_multiplicacao_maxima(arr):
+    heapsort(arr)
+    return arr[-1] * arr[-2]
+
+# Entrada de exemplo
+entrada = input()
+numeros = list(map(int, entrada.split(',')))
+
+resultado = calcular_multiplicacao_maxima(numeros)
+print("R${}".format(resultado))
