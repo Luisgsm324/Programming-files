@@ -72,7 +72,6 @@ doublelist = DoubleList()
 while True:
     question = input().split()
     if "deixou" not in question and "fechou" not in question:
-        
         doublelist.push(question[-1])
     
     elif "deixou" in question:

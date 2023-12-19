@@ -58,9 +58,6 @@ class DoubleList:
                 return
             cur = cur.next
 
-    
-            
-        
 
     def show_list(self):
         pointer = self.head
